@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { useToast } from '@/components/ui/use-toast'
+import { toast } from 'sonner' // Use Sonner's toast
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Enter a valid email address.' }),
@@ -20,7 +20,7 @@ type LoginFormValues = z.infer<typeof formSchema>
 
 export default function LoginForm() {
   const router = useRouter()
-  const { toast } = useToast()
+  // const { toast } = useToast() // Remove shadcn/ui useToast
   const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<LoginFormValues>({
@@ -39,14 +39,11 @@ export default function LoginForm() {
     })
 
     if (error) {
-      toast({
-        title: 'Login Error',
+      toast.error('Login Error', {
         description: error.message,
-        variant: 'destructive',
       })
     } else {
-      toast({
-        title: 'Login Successful',
+      toast.success('Login Successful', {
         description: 'You have been logged in successfully.',
       })
       router.push('/')

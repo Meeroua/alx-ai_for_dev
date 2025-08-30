@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { useToast } from '@/components/ui/use-toast'
+import { toast } from 'sonner' // Use Sonner's toast
 import { PlusCircledIcon, TrashIcon } from '@radix-ui/react-icons'
 
 const formSchema = z.object({
@@ -25,7 +25,7 @@ type CreatePollFormValues = z.infer<typeof formSchema>
 
 export default function CreatePollForm() {
   const router = useRouter()
-  const { toast } = useToast()
+  // const { toast } = useToast() // Remove shadcn/ui useToast
   const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<CreatePollFormValues>({
@@ -63,16 +63,13 @@ export default function CreatePollForm() {
 
       if (optionsError) throw optionsError
 
-      toast({
-        title: 'Poll Created',
+      toast.success('Poll Created', {
         description: 'Your poll has been created successfully.',
       })
       router.push('/') // Redirect to home or poll details page
     } catch (error: any) {
-      toast({
-        title: 'Error creating poll',
+      toast.error('Error creating poll', {
         description: error.message,
-        variant: 'destructive',
       })
     } finally {
       setIsLoading(false)
