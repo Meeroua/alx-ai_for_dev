@@ -1,8 +1,23 @@
 {
-  "dependencies": {
-    "@hookform/resolvers": "^5.2.1",
-    "@supabase/supabase-js": "^2.56.1",
-    "react-hook-form": "^7.62.0",
-    "zod": "^4.1.5"
-  }
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix"
+    },
+    "dependencies": {
+        "@hookform/resolvers": "^5.2.1",
+        "@supabase/supabase-js": "^2.56.1",
+        "next": "^15.5.2",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
+        "react-hook-form": "^7.62.0",
+        "zod": "^4.1.5"
+    },
+    "devDependencies": {
+        "@types/react": "19.1.12",
+        "eslint": "^9.34.0",
+        "eslint-config-next": "^15.5.2"
+    }
 }
